@@ -1,0 +1,70 @@
+<!Doctype html>
+<html>
+	<head>
+		<script>
+			function checkAll(field){
+				for (i = 0; i < field.length; i++)
+				field[i].checked = true ;
+			}
+
+			function uncheck(obj){
+				
+				if(obj.checked == true){
+					
+					uncheckAll(document.myform.list);
+				}
+				
+			}
+			function uncheckAll(field)
+			{
+				for (i = 0; i < field.length; i++){
+				field[i].checked = false ;}
+				var temp = document.getElementByName("none");
+				
+			}
+			function checkCount(j){
+									
+				var count = 0;
+				var day = new Array();
+				
+				if(j <= 6) { document.getElementById("7").checked=false }
+				for(var i=0; i<document.myform.list.length;i++){
+					if(document.myform.list[i].checked){
+						count=count+1;
+										
+					}	
+					if (count > 3){
+						var k=0;
+						for(var i=0; i<document.myform.list.length;i++){
+							if(document.myform.list[i].checked){
+								
+								if(i!=j){
+								day[k]=document.getElementById(i);
+								k++;
+								}
+							} 
+						}
+						alert("Only 3 days can be selected. You have already selected "+day[0].value+" , "+ day[1].value+" and "+day[2].value);
+					document.myform.list[j].checked=false;
+					}
+				}//End of for loop
+				
+				
+			}//End of checkCount
+			
+			
+		</script>
+	</head>
+	<body>
+		<form name="myform" action="checkboxes.asp" method="post">
+		<input type="checkbox" name=list id=0 value='Sunday' onClick='checkCount(0)'>Sunday<br>
+		<input type="checkbox" name=list id=1 value='Monday' onClick='checkCount(1)'>Monday<br>
+		<input type="checkbox" name=list id=2 value='Tuesday' onClick='checkCount(2)'>Tuesday<br>
+		<input type="checkbox" name=list id=3 value='Wednesday' onClick='checkCount(3)'>Wednesday<br>
+		<input type="checkbox" name=list id=4 value='Thursday' onClick='checkCount(4)'>Thursday<br>
+		<input type="checkbox" name=list id=5 value='Friday' onClick='checkCount(5)'>Friday<br>
+		<input type="checkbox" name=list id=6 value='Saturday' onClick='checkCount(6)'>Saturday<br>
+		<input type="checkbox" name=none id=7 value='None' onClick='uncheck(this)'>None<br>
+		</form>
+	</body>
+</html>
