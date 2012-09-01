@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<style>
+			.format {text-decoration:none; color:black;}
+			.table
+			{
+				border-collapse:collapse;
+			}
+			table, td, th
+			{
+				text-align:center;
+				border:2px solid grey;
+			}
+		</style>
+		<script  type="text/JavaScript">
+
+			function addRow()
+			{
+				var TABLE = document.getElementById('mytable');
+  				var BODY = TABLE.getElementsByTagName('tbody')[0];
+  				var TR = document.createElement('tr');
+  				var TD1 = document.createElement('td');
+				var TD2 = document.createElement('td');
+				var TD3 = document.createElement('td');
+  				TD1.innerHTML = "<input type='text' id = 'newCell1' name='t1'>";
+				TD2.innerHTML = "<input type='text' id = 'newCell2'name='t2'>";
+				TD3.innerHTML = "<input type='button' value='Save' id='b2' onclick='saveData2(this);'>";
+  				TR.appendChild (TD1);
+				TR.appendChild (TD2);
+				TR.appendChild (TD3);
+  				BODY.appendChild(TR);
+			}
+						
+			function saveData2(obj){
+				var p = obj.parentNode;	
+				var sib = p.previousSibling;
+				var ch1 = sib.firstChild;
+				ch1.setAttribute('disabled', "disabled");
+				
+				var sib2 = sib.previousSibling;
+				
+				var ch2 = sib2.firstChild;
+				ch2.setAttribute('disabled',"disabled");
+
+				var TD = document.createElement('td');
+				var a = document.createElement('a');
+				var send = document.getElementsByTagName("td");
+				a.innerHTML = "<a class='format' href='#' onclick='removeRow(this);'>Delete";
+				a.href = "javascript:removeRow()";
+				
+				var b = document.createElement('a');
+				b.innerHTML = "<a class='format' href='#' onclick='edit(this);'>Edit/";
+				TD.appendChild(b);
+				TD.appendChild(a);
+				p.parentNode.replaceChild(TD, p);
+
+			}
+			
+			function edit(obj){
+				var p = obj.parentNode.parentNode;	
+				var sib = p.previousSibling;
+				var ch1 = sib.firstChild;
+				ch1.removeAttribute('disabled');
+
+				var sib2 = sib.previousSibling;
+				var ch2 = sib2.firstChild;
+				ch2.removeAttribute('disabled');
+				saveAfterEdit(obj);
+			}	
+			function saveAfterEdit(obj){
+				var btn = document.createElement('td');
+				btn.innerHTML = "<input type='button' value='Save' id='ed1' onclick='saveData2(this);'>";
+				var p = obj.parentNode.parentNode;
+				p.parentNode.replaceChild(btn,p);
+			}
+			
+			function removeRow(src)
+			{
+				var i=src.parentNode.parentNode.parentNode.rowIndex;		
+				document.getElementById('mytable').deleteRow(i);
+			}
+		
+		</script>
+	</head>
+	<body>
+		<table id="mytable" border="1" class="table" >
+			<tr>
+				<td width="150px">Name</td>
+				<td width="150px">Email</td>
+				<td width="250px">Action</td>
+			</tr>
+			
+		</table>
+		<input type="button" value="Add Row" onclick="addRow()" />
+	</body>
+</html>
