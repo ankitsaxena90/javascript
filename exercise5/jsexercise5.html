@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel='stylesheet' href='jsform.css' type='text/css' />
+		<script src="formValidation.js"></script>
+	</head>
+	<body>
+	<div class="container">
+		<div id="layout1"> 
+			<span > <h1 id ="info1"> Registration Form</h1>
+		</div>
+		<div id="layout2" >
+			<form name='registration' onSubmit="return formValidation();">
+			<ul>
+				<li><label for="userid">Login id:</label></li>
+				<li><input type="text" name="userid" size="12" /></li>
+				<li><label for="email">Email:</label></li>
+				<li><input type="text" name="email" size="50" /></li>
+				<li><label for="username">Name:</label></li>
+				<li><input type="text" name="username" size="50" /></li>
+				<li><label for="passid">Password:</label></li>
+				<li><input type="password" name="passid" size="12" /></li>
+				
+				<li><label for="time">Time Zone</label></li>
+				<select name = "time">
+				<option selected="" value="Default"></option>
+				<option> GMT 0</option>
+				<option> GMT +1</option>
+				<option> GMT +2</option>
+				<option> GMT +3</option>
+				<option> GMT +4</option>
+				</select></li><br/>
+				<li><label for="home">Homepage</label></li><br/>
+				<li><input type="text" name="home" size="50" /></li>
+				<li><label for="desc">About me:</label></li>
+				<li><textarea name="desc" id="desc"></textarea></li>
+				<br><li><input type="checkbox" id="chk" name="chk" value="chk" unchecked /><span><b> Receive Notification of 					comments</b></span></li><br/>	
+				<li> <span class="ab"> You will be sent an email when somebody posts comments to your blog or album </span></li>
+			
+				<span class="mail"> <p > Your password will be mailed to you.</p></span>
+				<li><button type="submit" name="submit" value="Go" /></li>
+			</ul>
+			</form>
+		</div>
+	</body>
+</html>
