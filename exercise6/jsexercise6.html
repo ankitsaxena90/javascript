@@ -1,0 +1,27 @@
+<!Doctype html>
+<html>
+	<head>
+		<script>
+			function myfunction(){
+				var n1;
+				var n2;
+				var letters = /^[A-Za-z]+$/;
+				var fname = prompt("Please enter your first name");
+				while(!(fname.match(letters))) {
+					fname = prompt("Input name is not Correct.Please enter your first name again.");
+					
+				}
+				var lname = prompt("Please enter your last name");
+				while(!(lname.match(letters))) {
+					lname = prompt("Input name is not Correct.Please enter your last name");
+					
+			
+				}
+				document.write("Hello "+fname+" "+lname);
+			}
+		</script>
+	</head>
+	<body onLoad="myfunction()">
+		
+	</body>
+</html>
