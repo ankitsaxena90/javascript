@@ -1,0 +1,30 @@
+<!Doctype html>
+<html>
+	<head>
+		<script>
+			function checkDigit(){
+				
+				var text1 = document.form1.number;
+				var res = document.form1.result;
+				var digit = /(^\d+$)|(^\d+\’\d+$)/;
+				if(text1.value.match(digit)){
+					res.value="True";
+					alert("Form submitted successfully");
+				}
+				else {
+					alert("Data enetred is not numeric");
+					document.form1.reset();
+					text1.focus();
+				}
+				
+			}
+		</script>
+	</head>
+	<body onload="document.form1.reset();">
+		<form name="form1" >
+			Enter Number: <input type="text" name="number" /> <br/>
+			Result:<input type="text" name="result" style="margin-left:65px" /> <br/>
+			<input type="button" value="Submit" onClick="checkDigit()" />
+		</form>
+	</body>
+</html>
