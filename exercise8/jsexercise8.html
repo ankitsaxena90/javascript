@@ -1,0 +1,59 @@
+<html>
+	<head>
+	<style>
+		.format{ width:75px; background-color:#FFA500; color:white; border:2px solid #FFA500;border-radius:10px;}
+	</style>
+	<script>
+		function moveCountry(from, to) {
+			var select1 = document.form1.elements[from];
+			var select2   = document.form1.elements[to];
+			//alert(select1+" "+select2);
+			var count = 0;
+			var lenFrom = select1.options.length;
+			for (var i = 0; i < lenFrom; i++) {
+				z=i;
+				if (select1.options[i].selected) {
+				var lenTo = select2.options.length;
+				var text1 = select1.options[i].text;
+				var value1 = select1.options[i].value;
+				select2.options[lenTo] = new Option(text1, value1);
+				count++;
+				}
+				else if (count)
+				select1.options[z - count] = new Option(select1.options[i].text, select1.options[i].value);
+			}
+			if (count)
+				select1.options.length = select1.options.length - count;
+			else
+				alert("You haven't selected any options");
+		}
+
+	</script>
+	</head>
+	<body>
+		<form name="form1">
+		<table>
+			<tr>
+				<td>
+				<select multiple name="source" style="width: 200px;" >
+				<option>India</option>
+				<option>Germany</option>
+				<option>Spain</option>
+				<option>France</option>
+				<option>Italy</option>
+				<option>England</option>
+				</select>
+				</td>
+
+				<td>
+				<input class="format" type="Button" value="Add" onclick="moveCountry('source', 'destination')" ><br/><br/>
+				<input class="format" type="Button" value="Remove" onclick="moveCountry('destination', 'source')">
+				</td>
+				<td>
+				<select multiple name="destination" style="width: 200px;">
+				</select>
+				<br></td>		
+		</table>
+		</form>
+</body>
+</html>
