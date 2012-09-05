@@ -13,7 +13,8 @@
 				}
 				else {
 					alert("Data enetred is not numeric");
-					res.value="False";	
+					res.value="False";
+					
 				}
 				if(flag == 1) alert("Form Submitted Successfully");
 				
