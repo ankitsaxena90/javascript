@@ -65,13 +65,16 @@ function allLetter(uname){
 		}
 }
 function homepage(uhome){ 
-	var home_length = uhome.value.length;
-	if (home_length == 0){
-		alert('This field should not be empty. Please enter Homepge.');
+	//var home_length = uhome.value.length;
+	var urlPattern = /^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/
+	if (uhome.value.match(urlPattern))
+		return true;
+	else{
+		alert("You have entered invalid Homepage url");
 		uhome.focus();
 		return false;
 	}
-	return true;
+	
 }
 function timezoneselect(utime){
 	if(utime.value == "Default"){
@@ -84,7 +87,7 @@ function timezoneselect(utime){
 }
 	
 function ValidateEmail(uemail){
-var mailformat = /^(?:\w+\.?)*\w+@(?:\w+\.?)*\w+$/;
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	if(uemail.value.match(mailformat))
 		return true;
 	else{
