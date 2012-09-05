@@ -2,33 +2,34 @@
 <html>
 	<head>
 		<script>
-			function checkAll(field)
-			{
-				alert(field)
-				for (i = 0; i < field.length; i++)
-				field[i].checked = true ;
+			function checkAll(flag)
+			{	
+				var field = document.myform.list;
+				if(flag == 0){
+					for (i = 0; i < field.length; i++)
+					field[i].checked = true ;
+				}
+				if (flag == 1) {
+					for (i = 0; i < field.length; i++)
+					field[i].checked = false ;
+				}
 			}
 
-			function uncheckAll(field)
-			{
-				for (i = 0; i < field.length; i++)
-				field[i].checked = false ;
-			}
 		</script>
 	</head>
 		<body>
 			<form name="myform" action="checkboxes.asp" method="post">
 			
-			<input type="checkbox" name="list" value="1">Red<br>
+			<input type="checkbox" name="list" value="1" unchecked>Red<br>
 			<input type="checkbox" name="list" value="2">Green<br>
 			<input type="checkbox" name="list" value="3">Yellow<br>
 			<input type="checkbox" name="list" value="4">Black<br>
 			<input type="checkbox" name="list" value="5">Purple<br>
 
 			<input type="button" name="CheckAll" value="Select All"
-			onClick="checkAll(document.myform.list)">
+			onClick="checkAll(0)">
 			<input type="button" name="UnCheckAll" value="Select None"
-			onClick="uncheckAll(document.myform.list)">
+			onClick="checkAll(1)">
 			<br>
 			</form>
 		</body>
