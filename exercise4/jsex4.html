@@ -4,7 +4,6 @@
 		<style>
 			.format { list-style-type:none;}
 			#menu {height:100px;overflow:auto;}
-			.format2 { list-style-type:none; }
 		</style>
 		<script>
 			function checkChild(obj){
@@ -38,25 +37,25 @@
 	</head>
 
  	<body>
-		<form name = "form1">
+		<form name="form1">
 			<div id="menu">
-			<ul id="Listmenu" class = "format" >
+			<ul id="Listmenu" class="format" >
 			<li>	<input type="checkbox" name="list1" class="format" onClick="checkChild(this)">Drinks 
-				<ul class="format2" style="display:none">
+				<ul class="format" style="display:none">
 					<li><input type="checkbox" name="list1" >Coke</li>
 					<li><input type="checkbox" name="list1" >Pepsi</li>
 					<li><input type="checkbox" name="list1" >Dew</li>
 				</ul>
 			</li>
   			<li>	<input type="checkbox" onClick="checkChild(this)">Movies
-   				<ul class="format2" style="display:none">
+   				<ul class="format" style="display:none">
     					<li><input type="checkbox" name="list2" >MI</li>
     					<li><input type="checkbox" name="list2" >Darr</li>
 					<li><input type="checkbox" name="list2" >The Expandables</li>
     				</ul>
   			</li>
   			<li>	<input type="checkbox" onClick="checkChild(this)">Bikes
-    				<ul class = "format2"style="display:none">
+    				<ul class="format" style="display:none">
     				 	 <li><input type="checkbox" name="list3" >Pulsar</li>
    					 <li><input type="checkbox" name="list3" >Ducati</li>
 					 <li><input type="checkbox" name="list3" >CBZ</li>
