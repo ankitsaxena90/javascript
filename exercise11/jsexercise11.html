@@ -5,7 +5,7 @@
 			function checkDomain(){
 				var url1 = document.form1.url.value;
 				
-				var pattern = /^(ht|f)tps?:\/\/[a-zA-Z0-9-\.]+[\/\w+]*[\.[a-z]{2,4}]*$/
+				var pattern = /^(ht|f)tps?:\/\/[a-zA-Z0-9-\.]+[\/\w+]*\.([a-z]{1,4})$/
 				if(url1.match(pattern)){
 					var text = url1.split("/");
 					var dom = text[2].split(".");
