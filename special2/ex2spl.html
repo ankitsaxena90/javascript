@@ -1,0 +1,67 @@
+<!Doctype html>
+<html>
+	<head>
+		<style>
+			.divStyle { width:230px; height:300px; }
+			div p:hover {background-color:#ffff99; cursor:pointer; }
+		</style>
+		<script>
+			var myObject = {"suggestions": [{"name":"Luigi Damiano"},
+				{"name":"Zenith Coboro"},
+				{"name":"Zig Ziglar"},
+				{"name":"Steve Costner"},
+				{"name":"Bill Grazer"},
+				{"name":"Timothy Frazer"},
+				{"name":"Boris Becker"},
+				{"name":"Glenn Gladwich"},
+				{"name":"Jim Jackson"},
+				{"name":"Aaron Kabin"},
+				{"name":"Roy Goldwin"},
+				{"name":"Jason Goldberg"},
+				{"name":"Tim Ferris"},
+				{"name":"Buck Singham"},
+				{"name":"Malcom Gladwell"},
+				{"name":"Joy Rabura"},
+				{"name":"Vid Luther"},
+				{"name":"Tom Glicken"},
+				{"name":"Ray Baxter"},
+				{"name":"Ari Kama"},
+				{"name":"Kenichi Suzuki"},
+				{"name":"Rick Olson"}]
+				};
+			var CCOUNT = 8;
+    			var t, pos, count = CCOUNT;
+			function myfunction(){
+				var n = document.form1.data.value;
+				var div = document.getElementById("divID");
+				var reCat = new RegExp(n);
+				console.log(reCat);
+				while (div.hasChildNodes()) {
+					div.removeChild(div.lastChild);
+				}
+				for(var i=0; i<myObject.suggestions.length; i++){
+					if(((reCat.test(myObject.suggestions[i].name)) == true) && (n.length > 0)){
+						pos = i;
+						var oP = document.createElement("p");
+						var oText = document.createTextNode(myObject.suggestions[pos].name);
+						oP.appendChild(oText);
+						div.appendChild(oP);	
+					}
+				}
+				var pTag = document.getElementsByTagName("p");
+				for(var i=0; i < pTag.length; i++){
+					pTag[i].onclick = function() { 
+						document.getElementById('name1').value = this.innerHTML;
+					};
+				}
+				count--;
+				t = setTimeout("myfunction()", 1000);
+			}
+		</script>
+	</head>
+	<body onload=myfunction() >
+		<form name="form1">
+		<input type="text" name="data" id="name1"/>
+		<div id="divID" class="divStyle"></div>
+	</body>
+</html>
