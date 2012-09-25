@@ -2,6 +2,12 @@
 <html>
 	<head>
 		<script>
+			function handleSubmit() {
+				checkDigit();
+				var oEvent = EventUtil.getEvent();
+				oEvent.preventDefault();
+				
+			}
 			function checkDigit(){
 				var flag = 0;
 				var text1 = document.form1.number;
@@ -11,20 +17,16 @@
 					res.value="True";
 					flag = 1;
 				}
-				else {
-					alert("Data enetred is not numeric");
-					res.value="False";	
-				}
-				if(flag == 1) alert("Form Submitted Successfully");
-				
+				else 
+					res.value="False";				
 			}
 		</script>
 	</head>
 	<body onload="document.form1.reset();">
-		<form name="form1" >
+		<form name="form1" action="javascript:alert('Submitted')" onsubmit="handleSubmit()">
 			Enter Number: <input type="text" name="number" /> <br/>
 			Result:<input type="text" name="result" style="margin-left:65px" /> <br/>
-			<input type="button" value="Submit" onClick="checkDigit()" />
+			<input type="submit" value="Submit" />
 		</form>
 	</body>
 </html>
