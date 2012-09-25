@@ -1,30 +1,17 @@
 <!Doctype html>
 <html>
-	<head>
-		<script>
-			function checkDomain(){
-				var url1 = document.form1.url.value;
-				
-				var pattern = /^(ht|f)tps?:\/\/[a-zA-Z0-9-\.]+[\/\w+]*\.([a-z]{1,4})$/
-				if(url1.match(pattern)){
-					var text = url1.split("/");
-					var dom = text[2].split(".");
-					
-					var l = dom.length-1;
-					var sub = "";
-					for(var i = 0; i < l-1; i++)
-						sub = sub+dom[i]+".";
-					alert("Domain: "+dom[l-1]+"."+dom[l]+"\nSubDomain: "+sub);
-					
-				}
-				else alert("Url entered is invalid");	
-			}
-		</script>
-	</head>
-	<body>
-		<form name = "form1">
-			Enter url: <input type="text" name="url" value="http://"/> <br/>
-			<input type="button" name="submit" value="Submit" onClick="checkDomain()" />
-		</form>
-	</body>
+  <head>
+    <script type = "text/javascript">
+      function checkUrl() {
+		var pattern = /([a-z0-9]+\.)*([a-z0-9]+\.[a-z]+)/;
+	        var url = document.getElementById("url").value;
+	        pattern.test(url);
+		alert("SubDomain is "+RegExp.$1+" Domain is "+RegExp.$2);
+      }
+    </script>
+  </head>
+  <body>
+      URL:-<input type = "text" id = "url" ><br/>
+      <input type = "button" onClick = "checkUrl()" value = "submit" >
+  </body>
 </html>
