@@ -5,14 +5,9 @@
 			function checkAll(flag)
 			{	
 				var field = document.myform.list;
-				if(flag == 0){
+				
 					for (i = 0; i < field.length; i++)
-					field[i].checked = true ;
-				}
-				if (flag == 1) {
-					for (i = 0; i < field.length; i++)
-					field[i].checked = false ;
-				}
+					field[i].checked = flag ;
 			}
 
 		</script>
@@ -25,8 +20,8 @@
 		<input type="checkbox" name="list" value="3">Yellow<br>
 		<input type="checkbox" name="list" value="4">Black<br>
 		<input type="checkbox" name="list" value="5">Purple<br>
-		<input type="button" name="CheckAll" value="Select All"	onClick="checkAll(0)">
-		<input type="button" name="UnCheckAll" value="Select None" onClick="checkAll(1)">
+		<input type="button" name="CheckAll" value="Select All"	onClick="checkAll(true)">
+		<input type="button" name="UnCheckAll" value="Select None" onClick="checkAll(false)">
 		<br>
 		</form>
 	</body>
