@@ -11,8 +11,8 @@
 				}
 				var url2 = "http://";
 				var url = url2+url1;
-				window.open(url,"_blank","toolbar=0, location=0, directories=0, status=0, menubar=0, scrollbars=0, 					resizable=0, width=400, height=450");
-				
+				url = url.replace(/\s/g, "");
+				window.open(url,"_blank","toolbar=0, location=0, directories=0, status=0, menubar=0, scrollbars=0, resizable=0, width=400, height=450");	
 			}
 		</script>
 	</head>
