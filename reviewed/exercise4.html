@@ -1,0 +1,56 @@
+<!Doctype html>
+<html>
+	<head>	
+		<style>
+			.format { list-style-type:none;}
+			#menu {height:100px; overflow:auto;}
+		</style>
+		<script>
+			function checkChild(obj,list_id){
+				var child_id = document.getElementById(list_id);
+				if(obj.checked == true){ 
+					child_id.style.display="block";
+					child_id.scrollIntoView(false);
+					var nodes = document.getElementsByName(list_id);
+					for(var i = 0; i < nodes.length; i++)
+						nodes[i].checked = true;
+				}
+				else {
+         				child_id.style.display="none";
+					var nodes = document.getElementsByName(list_id);
+					for(var i = 0; i < nodes.length; i++)
+						nodes[i].checked = true;
+				}
+			}
+		</script>
+		
+	</head>
+
+ 	<body>
+		<form name="form1">
+			<div id="menu">
+			<ul id="Listmenu" class="format" >
+			<li>	<input type="checkbox" name="list1" onClick="checkChild(this,'drink_id')">Drinks 
+				<ul id="drink_id" style="display:none" class="format">
+					<li><input type="checkbox" name="drink_id">Coke</li>
+					<li><input type="checkbox" name="drink_id">Pepsi</li>
+					<li><input type="checkbox" name="drink_id">Dew</li>
+				</ul>
+			</li>
+  			<li>	<input type="checkbox" onClick="checkChild(this,'movie_id')">Movies
+   				<ul id="movie_id" style="display:none" class="format">
+    					<li><input type="checkbox" name="movie_id">MI</li>
+    					<li><input type="checkbox" name="movie_id">Darr</li>
+					<li><input type="checkbox" name="movie_id">The Expandables</li>
+    				</ul>
+  			</li>
+  			<li>	<input type="checkbox" onClick="checkChild(this,'bikes_id')">Bikes
+    				<ul id="bikes_id" style="display:none" class="format">
+    				 	 <li><input type="checkbox" name="bikes_id">Pulsar</li>
+   					 <li><input type="checkbox" name="bikes_id">Ducati</li>
+					 <li><input type="checkbox" name="bikes_id">CBZ</li>
+    				</ul>
+  			</li>
+		</form>
+	</body>
+</html>
