@@ -1,11 +1,16 @@
 <html>
   <head>
+<<<<<<< HEAD
 
     <script type = "text/javascript">
+=======
+    <script type="text/javascript">
+>>>>>>> c2b8f223f0e5998986523ccaf406a30222d3e2ef
       function checkUrl() {
 		var pattern = /([a-z0-9]+\.)*([a-z0-9]+\.[a-z]+)/;
 	        var url = document.getElementById("url").value;
 	        pattern.test(url);
+<<<<<<< HEAD
 		alert("SubDomain is "+RegExp.$1+" Domain is "+RegExp.$2);
       }
     </script>
@@ -16,4 +21,14 @@
       <input type = "button" onClick = "checkUrl()" value = "submit" >
   </body>
 
+=======
+		alert("SubDomain is "+ RegExp.$1 +" Domain is "+ RegExp.$2);
+      }
+    </script>
+  </head>
+  <body>
+      URL:-<input type="text" id="url" ><br/>
+      <input type="button" onClick="checkUrl()" value="submit" >
+  </body>
+>>>>>>> c2b8f223f0e5998986523ccaf406a30222d3e2ef
 </html>
