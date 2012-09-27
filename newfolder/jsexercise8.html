@@ -1,0 +1,50 @@
+<html>
+	<head>
+	<style>
+		.format{ width:75px; background-color:#FFA500; color:white; border:2px solid #FFA500;border-radius:10px;}
+	</style>
+	<script>
+		function moveCountry(from, to) {
+			var from_options = document.getElementById(from);
+			var to_option = document.getElementById(to);
+  			for (var i = 0; i < from_options.length; i++) {
+     				var opt = from_options[i];				
+     				if (opt.selected) {
+      					from_options.removeChild(opt);
+      					to_option.appendChild(opt);
+     					i--;
+ 				}
+  			}
+			
+		}
+
+	</script>
+	</head>
+	<body>
+		<form name="form1">
+		<table>
+			<tr>
+				<td>
+				<select multiple name="source" id="src_id" style="width: 200px;">
+				<option>India</option>
+				<option>Germany</option>
+				<option>Spain</option>
+				<option>France</option>
+				<option>Italy</option>
+				<option>England</option>
+				</select>
+				</td>
+
+				<td>
+				<input class="format" type="Button" value="Add" onclick="moveCountry('src_id','destination_id')"><br/><br/>
+				<input class="format" type="Button" value="Remove" onclick="moveCountry('destination_id','src_id')">
+				</td>
+				<td>
+				<select multiple name="destination" id="destination_id" style="width:200px;" size="5">
+				</select><br>
+				</td>
+			</tr>		
+		</table>
+		</form>
+</body>
+</html>
