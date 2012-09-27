@@ -2,31 +2,26 @@
 <html>
 	<head>
 		<script>
-			function handleSubmit() {
-				checkDigit();
-				var oEvent = EventUtil.getEvent();
-				oEvent.preventDefault();
-				
-			}
 			function checkDigit(){
-				var flag = 0;
 				var text1 = document.form1.number;
 				var res = document.form1.result;
 				var digit = /(^\d+$)|(^\d+\’\d+$)/;
 				if(text1.value.match(digit)){
 					res.value="True";
-					flag = 1;
+					return true;
 				}
-				else 
-					res.value="False";				
+				else {
+					res.value="False";
+					return false;
+				}
 			}
 		</script>
 	</head>
 	<body onload="document.form1.reset();">
-		<form name="form1" action="javascript:alert('Submitted')" onsubmit="handleSubmit()">
-			Enter Number: <input type="text" name="number" /> <br/>
-			Result:<input type="text" name="result" style="margin-left:65px" /> <br/>
-			<input type="submit" value="Submit" />
+		<form name="form1" action="welcome.html" onsubmit="return(checkDigit());">
+			Enter Number:<input type="text" name="number"/><br/>
+			Result:<input type="text" name="result" style="margin-left:65px"/><br/>
+			<input type="submit" value="Submit"/>
 		</form>
 	</body>
 </html>
