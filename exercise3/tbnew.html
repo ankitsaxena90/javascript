@@ -1,0 +1,130 @@
+<html>
+	<head>
+	<style>
+		.table
+			{
+				border-collapse:collapse;
+			}
+	</style>
+	<script type = "text/javascript">
+		var row_no = 1;
+		function addRow() {
+			 var tbody = document.getElementById("tbody");
+		         var trow = document.createElement("tr");
+		         tbody.appendChild(trow);
+	   
+		         trow.id = "row"+row_no;
+		         trow.insertCell(0);
+		         trow.cells[0].appendChild(create_new_cell("Name"+row_no));
+		         trow.insertCell(1);
+		         trow.cells[1].appendChild(create_new_cell("email"+row_no));
+		         trow.insertCell(2);
+		         trow.cells[2].appendChild(create_new_button("saveData("+row_no+")"));
+	
+		         tbody.appendChild(trow);
+		         document.getElementById("table1").appendChild(tbody);
+		         row_no++;
+	        }
+		function saveData(row_number){
+			 var tbody = document.getElementById("tbody");
+    
+       			var row_val = document.getElementById("row"+row_number).rowIndex;
+			var name_cell_value = document.getElementById("Name"+row_number).value;
+		        var email_cell_value = document.getElementById("email"+row_number).value;
+
+			var cell_id = tbody.rows[row_val].id;
+	
+			/*var c1 = document.getElementsByTagName('input')[0].id;
+			var c2 = document.getElementsByTagName('input')[1].id;
+			var x1 = document.getElementById(c1);
+			var x2 = document.getElementById(c2);
+			console.log(x1);*/
+       			document.getElementById("tbody").deleteRow(row_val);//Delete the duplicate rows
+       			tbody.insertRow(row_val);
+
+       			tbody.rows[row_val].id= row_number;
+
+       			tbody.rows[row_val].insertCell(0);
+       			tbody.rows[row_val].cells[0].appendChild(document.createTextNode(name_cell_value));
+
+       			tbody.rows[row_val].insertCell(1);
+       			tbody.rows[row_val].cells[1].appendChild(document.createTextNode(email_cell_value));
+
+       			tbody.rows[row_val].insertCell(2);
+			var link_edit = document.createElement("a");
+			var link_text_edit = document.createTextNode("Edit/");
+      			link_edit.setAttribute("href","#");
+       			link_edit.setAttribute("onclick","edit("+tbody.rows[row_val].id+")");
+			link_edit.appendChild(link_text_edit);
+			tbody.rows[row_val].cells[2].appendChild(link_edit);
+       			
+			var link_delete = document.createElement("a");
+			var link_text_delete = document.createTextNode("Delete");
+       			link_delete.setAttribute("href","#");
+			//link_delete.href = "javascript:removeRow()"
+       			link_delete.setAttribute("onclick","removeRow("+tbody.rows[row_val].id+")");
+			link_delete.appendChild(link_text_delete);
+			tbody.rows[row_val].cells[2].appendChild(link_delete);
+		}
+		function create_new_cell(id_value) {
+	      		var TD = document.createElement("td");
+	      		var new_cell = document.createElement("input");
+	         	new_cell.setAttribute("type","text");
+	         	new_cell.setAttribute("id",id_value);
+	         	TD.appendChild(new_cell);
+	         	return TD;
+	        }
+
+	       function create_new_button(val) {
+			var TD = document.createElement("td");
+	         	var new_cell = document.createElement("input");
+		         new_cell.setAttribute("type","button");
+			 new_cell.setAttribute("id","b2");
+		         new_cell.setAttribute("value","save");
+		         new_cell.setAttribute("onclick",val);
+		         TD.appendChild(new_cell);
+		         return TD;
+	        }
+
+		function removeRow(src) {
+			var i = document.getElementById(src).rowIndex;
+			//var i=src.parentNode.parentNode.parentNode.rowIndex;
+			console.log(i);
+			document.getElementById('table1').deleteRow(i);
+		}
+
+		function edit(row_id) {
+			var tbody = document.getElementById("tbody");
+       			var row1 = document.getElementById(row_id);
+        		var row2 = row1.rowIndex;
+        		tbody.deleteRow(row1.rowIndex);
+        		tbody.insertRow(row2);
+        		var name_cell_value = row1.cells[0].childNodes[0].textContent;
+        		var email_cell_value = row1.cells[1].childNodes[0].textContent;
+        		tbody.rows[row2].id = "row"+row_id;
+        		tbody.rows[row2].insertCell(0);
+        		tbody.rows[row2].cells[0].appendChild(create_new_cell("Name"+row_id,name_cell_value));
+        		tbody.rows[row2].insertCell(1);
+        		tbody.rows[row2].cells[1].appendChild(create_new_cell("email"+row_id,email_cell_value));
+        		tbody.rows[row2].insertCell(2);
+        		tbody.rows[row2].cells[2].appendChild(create_new_button("saveData("+row_id+")"));
+		}	
+		
+
+	</script>
+	</head>
+	
+	<body>
+		<table id = "table1" border=1px cellspacing=0px class="table">
+		<tbody id = "tbody">
+	        <tr>
+		 	  <td width="150px">Name</td>
+		          <td width="150px">Email</td>
+		          <td width="150px">Action</td>
+	        </tr>
+	       </tbody>
+    		</table>
+		<button type="button" onClick="addRow()">Add Row</button>
+
+  	</body>
+</html>
