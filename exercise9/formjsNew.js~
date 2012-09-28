@@ -12,6 +12,7 @@ function formValidation()
 
 	var element = document.getElementsByTagName("input");
 	var len = element.length;
+	var flag = 0;
 	for(var i=0; i<len; i++){
 		if(element[i].value.length == ""){	
 			alert(element[i].name+" should not be empty");
