@@ -13,15 +13,14 @@ var chk_operator = new Array();
 function generateQuestion(){
 	index = index + 1;
 	if (index <= 5){
-	var sub = document.getElementById("sub");
+	/*var sub = document.getElementById("sub");
 	sub.style.display='inline';
 	var start = document.getElementById("start");
 	start.style.display='none';
 	var res = document.getElementById("ans");
-	res.style.display='inline';	
+	res.style.display='inline';	*/
 	questions();
 	}
-	
 	else {
 		var res = document.getElementById("ans");
 		checkAnswers(res.value);
@@ -44,44 +43,49 @@ function questions(){
 	op = Math.floor((Math.random() * 4) + 1);
 	switch(op){
 		case 1:
-			document.getElementById("expression").innerHTML = "Ques. "+index+"-> What is "+n1+" + "+n2;
+			document.getElementById("expression").innerHTML = "Ques. "+index+" What is "+n1+" + "+n2;
 			answer[index] = n1 + n2;
 			operator = '+';
 			break;
 		case 2:
-			document.getElementById("expression").innerHTML = "Ques. "+index+"-> What is "+n1+" - "+n2;
+			document.getElementById("expression").innerHTML = "Ques. "+index+" What is "+n1+" - "+n2;
 			answer[index] = n1 - n2;
 			operator = '-';
 			break;
 		case 3:
-			document.getElementById("expression").innerHTML = "Ques. "+index+"-> What is "+n1+" * "+n2;
+			document.getElementById("expression").innerHTML = "Ques. "+index+" What is "+n1+" * "+n2;
 			answer[index] = n1 * n2;
 			operator = '*';
 			break;
 		case 4:
-			document.getElementById("expression").innerHTML = "Ques. "+index+"-> What is "+n1+" / "+n2;
+			document.getElementById("expression").innerHTML = "Ques. "+index+" What is "+n1+" / "+n2;
 			answer[index] = n1 / n2;
 			operator = '/';
 			break;
 	}
+	//console.log(document.getElementById("expression").innerHTML);
 	cdreset();
 	countdown();
 	var res = document.getElementById("ans");
-	res.removeAttribute('disabled');	
+	console.log(res.value);
+	res.removeAttribute('disabled');
 	if(index>1)
 	checkAnswers(res.value);
 	res.value = "";
 }
-
 function checkAnswers(n){
+	//console.log(document.getElementById("expression").innerHTML);
 	var res = document.getElementById("ans");
 	if(n == (answer[index-1])) {
 		correct = correct +1;
 		document.getElementById("correct").innerHTML = "Correct questions: "+correct;
 	}
 	else {
+		console.log(document.getElementById("expression").innerHTML);
+		console.log(n1);
 		wrong_ans1[index] = n1;
 		wrong_ans2[index] = n2;
+		console.log(n2);
 		correct_answer[index] = answer[index];
 		chk_operator[index] = operator;
 		incorrect = incorrect +1;
@@ -94,22 +98,21 @@ var t, count = CCOUNT;
 function countdown() {
         document.getElementById('num1').innerHTML = count+" secs left";
         if (count == 0) {
-		var res = document.getElementById("ans");
-		res.setAttribute('disabled', "disabled");
-		if(res.value=" ") {
-			timeout = timeout + 1;
-			document.getElementById("timeout").innerHTML = "Timeout questions: "+timeout;
-			wrong_ans1[index] = n1;
-			wrong_ans2[index] = n2;
-			correct_answer[index] = answer[index];
-			chk_operator[index] = operator;
-		}
+			var res = document.getElementById("ans");
+			res.setAttribute('disabled', "disabled");
+			if(res.value=" ") {
+				timeout = timeout + 1;
+				document.getElementById("timeout").innerHTML = "Timeout questions: "+timeout;
+				wrong_ans1[index] = n1;
+				wrong_ans2[index] = n2;
+				correct_answer[index] = answer[index];
+				chk_operator[index] = operator;
+			}
         } 
-	else {
-            count--;
-            t = setTimeout("countdown()", 1000);
-
-        }
+	else{
+		count--;
+        t = setTimeout("countdown()", 1000);
+    }
 }   
   
 function cdreset() {
@@ -117,4 +120,3 @@ function cdreset() {
         count = CCOUNT;
         document.getElementById('num1').innerHTML = count+" secs left";
 }
-

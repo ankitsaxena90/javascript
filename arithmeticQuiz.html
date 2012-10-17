@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<style type="text/css">
+			#timer { float: right;  }
+			#replaceDiv { width: 50%; }
+			#resultDiv { width: 30%; border: 1px solid black; padding: 0 0 10 10; }
+		</style>
+		<script>
+			var timerDiv = document.getElementById('timer');
+			var answer_field = document.getElementById('answer');
+			var questionField = document.getElementById('question');
+			var question_no = document.getElementById('serial_no');
+			var no_of_questions;
+			var operator = ["+", "-", "*", "/"];
+			var questions;
+			var answers;
+			var i,t;
+			var time = 10;
+
+			function startQuiz(){
+				//update number of questions
+				no_of_questions = 5;
+				questions = [];
+				answers = [];
+				i = 0;
+				generateQuestion(0);
+			}
+
+			//function to get random number from 1 to n
+			function randomToN(maxVal,floatVal){
+				var randVal = Math.random()*maxVal;
+				if(Math.round(randVal)<1){randVal = 1;}
+				return typeof floatVal=='undefined'? Math.round(randVal) : randVal.toFixed(floatVal);
+			}
+			function generateQuestion(val){
+				answer_field = document.getElementById('answer');
+				answer_field.removeAttribute('disabled');
+				clearTimeout(t);
+				time = 10;
+				t = setInterval(timer, 1000);
+	
+				if(question_no == null)
+					question_no = document.getElementById('serial_no');
+				question_no.innerHTML = i+1;
+
+				if(i > 0) {
+					if(answer_field == null)
+						answer_field = document.getElementById('answer');
+					if(val == 0) 
+						answers.push(""); 
+					else{ 
+						answers.push(answer_field.value); }
+						answer_field.value = "";
+					}
+					i++;
+					if(i > no_of_questions)
+						ShowResults();
+					// create a new question
+					var firstDigit = randomToN(20);
+					var secondDigit = randomToN(20);
+					var randomOperator = randomToN(4);
+					var new_question = firstDigit + ' ' + operator[randomOperator-1] + ' ' + secondDigit;
+					questions.push(new_question);
+					if(questionField == null)
+						questionField = document.getElementById('question');
+					questionField.innerHTML = new_question;
+				}
+
+				function checkAnswer(str){
+					if(str == "" || str == null){ 
+						return -100; 
+					}
+					var s1 = eval(str);
+					s1 = parseFloat(s1.toFixed(1));
+					return s1;
+				}
+
+				function ShowResults(){
+					var score = 0;
+					var result = "<div id='resultDiv'><h4>Result</h4>";
+					var correctAnswers = "<p>Correct Answers for wrong/timeout questions: </p>";
+					for(var j=0; j<questions.length; j++) {
+					if((checkAnswer(questions[j]) != 100) && (checkAnswer(questions[j]) == checkAnswer(answers[j]))){
+						score++;
+					}
+					else
+						correctAnswers += questions[j] + " = " + checkAnswer(questions[j]) + "<br />";
+				}
+				result += "Score: " + score + " out of " + no_of_questions + "</div>";
+				result += correctAnswers;
+				document.getElementById('replaceDiv').innerHTML = result;
+			}
+
+			function timer() {
+				time = time - 1;
+				if (time >= 0) { 
+					timerDiv = document.getElementById('timer');
+					timerDiv.innerHTML = "Time left : " + (time) + " secs";
+				}
+    			if (time <= 0) { 
+    				answer_field = document.getElementById('answer'); 
+    				answer_field.setAttribute('disabled', "disabled");
+    			}
+			}
+
+			</script>
+		</head>
+	<body onLoad="startQuiz();">
+		<h2>Timed Arithmetic Quiz</h2><br />
+		<br />
+		<div id='replaceDiv'>
+			Question <span id='serial_no'>1</span> of 5
+			<div id='timer'>Time left : secs</div>
+			<div class='questionDiv'>
+				<p>
+				<span id='question'> </span> =
+				<span><input type="text" id='answer' name="answer" /></span>
+				</p><br />
+				<button type="button" onclick="generateQuestion(1);">Submit</button>
+			</div>
+		</div>
+	</body>
+</html>
