@@ -36,7 +36,6 @@
 				var n = document.form1.data.value;
 				var div = document.getElementById("container");
 				var inputFieldExp = new RegExp(n);
-				console.log(inputFieldExp);
 				document.getElementById('container').innerHTML ="";
 				name_list = [];
 				n = document.form1.data.value;
@@ -53,7 +52,6 @@
 			function displaySuggestions(name_list){
 				var div = document.getElementById("container");
 				for(var i=0; i<name_list.length; i++){
-					console.log(i);
 					var sub_div = document.createElement("div");
         				sub_div.innerHTML = (name_list[i]);
         				div.appendChild(sub_div);
