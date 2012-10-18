@@ -31,7 +31,7 @@
 				};
 
 			var name_list = new Array();
-    			var pos;
+    		var pos;
 			function autoSuggest(){
 				var n = document.form1.data.value;
 				var div = document.getElementById("container");
@@ -55,12 +55,12 @@
 				for(var i=0; i<name_list.length; i++){
 					console.log(i);
 					var sub_div = document.createElement("div");
-        				sub_div.innerHTML = (name_list[i]);
-        				div.appendChild(sub_div);
-        				sub_div.onclick = function() { 
+        			sub_div.innerHTML = (name_list[i]);
+        			div.appendChild(sub_div);
+        			sub_div.onclick = function() { 
 						document.getElementById('name1').value = this.innerHTML;
 					}
-        			}
+        		}
 			}
 		</script>
 	</head>
