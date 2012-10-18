@@ -30,7 +30,7 @@
 				{"name":"Rick Olson"}]
 				};
 			var CCOUNT = 8;
-    			var t, pos, count = CCOUNT;
+    		var t, pos, count = CCOUNT;
 			function autoSuggest(){
 				var n = document.form1.data.value;
 				var div = document.getElementById("divID");
