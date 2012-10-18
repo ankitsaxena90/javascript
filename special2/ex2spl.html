@@ -31,48 +31,35 @@
 				};
 			var CCOUNT = 8;
     			var t, pos, count = CCOUNT;
-			function autoSuggest(){
+			function myfunction(){
 				var n = document.form1.data.value;
 				var div = document.getElementById("divID");
-				var inputFieldExp = new RegExp(n);
-				console.log(inputFieldExp);
+				var reCat = new RegExp(n);
+				console.log(reCat);
 				while (div.hasChildNodes()) {
 					div.removeChild(div.lastChild);
 				}
-				suggestionsList(inputFieldExp);		
-				count--;
-				t = setTimeout("autoSuggest()", 1000);
-			}
-
-			function suggestionsList(inputFieldExp){
-				var exp = inputFieldExp;
-				n = document.form1.data.value;
-
-				//display the names if it contains the character entered in the input box
 				for(var i=0; i<myObject.suggestions.length; i++){
-					if(((exp.test(myObject.suggestions[i].name)) == true) && (n.length > 0)){
+					if(((reCat.test(myObject.suggestions[i].name)) == true) && (n.length > 0)){
 						pos = i;
-						displaySuggestions(pos);
+						var oP = document.createElement("p");
+						var oText = document.createTextNode(myObject.suggestions[pos].name);
+						oP.appendChild(oText);
+						div.appendChild(oP);	
 					}
 				}
-			}
-			function displaySuggestions(index){
-				div = document.getElementById("divID");
-				var oP = document.createElement("p");
-				var oText = document.createTextNode(myObject.suggestions[index].name);
-				oP.appendChild(oText);
-				div.appendChild(oP);
-
 				var pTag = document.getElementsByTagName("p");
 				for(var i=0; i < pTag.length; i++){
 					pTag[i].onclick = function() { 
 						document.getElementById('name1').value = this.innerHTML;
 					};
 				}
+				count--;
+				t = setTimeout("myfunction()", 1000);
 			}
 		</script>
 	</head>
-	<body onload=autoSuggest() >
+	<body onload=myfunction() >
 		<form name="form1">
 		<input type="text" name="data" id="name1"/>
 		<div id="divID" class="divStyle"></div>

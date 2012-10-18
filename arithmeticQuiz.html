@@ -16,6 +16,7 @@
 			var answers;
 			var i,t;
 			var time = 10;
+			var blank = 0;
 
 			function startQuiz(){
 				//update number of questions
@@ -36,7 +37,7 @@
 				answer_field = document.getElementById('answer');
 				answer_field.removeAttribute('disabled');
 				clearTimeout(t);
-				time = 10;
+				time = 5;
 				t = setInterval(timer, 1000);
 	
 				if(question_no == null)
@@ -46,10 +47,8 @@
 				if(i > 0) {
 					if(answer_field == null)
 						answer_field = document.getElementById('answer');
-					if(val == 0) 
-						answers.push(""); 
-					else{ 
-						answers.push(answer_field.value); }
+					
+						answers.push(answer_field.value); 
 						answer_field.value = "";
 					}
 					i++;
@@ -68,7 +67,8 @@
 
 				function checkAnswer(str){
 					if(str == "" || str == null){ 
-						return -100; 
+						blank++;
+						return -100;
 					}
 					var s1 = eval(str);
 					s1 = parseFloat(s1.toFixed(1));
@@ -79,15 +79,18 @@
 					var score = 0;
 					var result = "<div id='resultDiv'><h4>Result</h4>";
 					var correctAnswers = "<p>Correct Answers for wrong/timeout questions: </p>";
+					
 					for(var j=0; j<questions.length; j++) {
-					if((checkAnswer(questions[j]) != 100) && (checkAnswer(questions[j]) == checkAnswer(answers[j]))){
+					if((checkAnswer(questions[j]) == checkAnswer(answers[j]))){
 						score++;
 					}
 					else
 						correctAnswers += questions[j] + " = " + checkAnswer(questions[j]) + "<br />";
 				}
+				console.log(blank);
+				var unanswered = "<p>Unanswered/Timeout questions : " +blank+ "</p>";
 				result += "Score: " + score + " out of " + no_of_questions + "</div>";
-				result += correctAnswers;
+				result = result + correctAnswers + unanswered;
 				document.getElementById('replaceDiv').innerHTML = result;
 			}
 
