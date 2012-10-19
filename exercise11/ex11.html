@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script type = "text/javascript">
+      function checkUrl() {
+		  var pattern = /^(https?:\/\/)?((([A-z]+)\.)*)([A-z]+\.[A-z]{2,4})$/
+	        var url = document.getElementById("url").value;
+	        pattern.test(url);
+          if(RegExp.$2.length>0)
+		        alert("SubDomain is "+RegExp.$2+" Domain is "+RegExp.$5);
+          else
+            alert("Domain is "+RegExp.$5);
+      }
+    </script>
+  </head>
+  <body onload = "document.form1.reset()">
+    <form name="form1">
+      URL:-<input type = "text" id = "url" value="http://" ><br/>
+      <input type = "button" onClick = "checkUrl()" value = "submit" >
+    </form>
+  </body>
+</html>
