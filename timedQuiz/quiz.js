@@ -1,8 +1,6 @@
 var firstDigit, op, secondDigit;
 var operator = ["+", "-", "*", "/"];
-var questions = [];
-var answers = [];
-var maxQuestion = 20;
+var maxQuestion = 5;
 var ques_count = 0;
 var questionField;
 var answer, wrong;
@@ -11,15 +9,19 @@ var quesNumber = document.getElementById("ques_no");
 var score = 0, timeout = 0;
 var wrongAnswers = [];
 var time ,t;
+question_list = []; 
 
 for(var i = 0; i <= maxQuestion; i++){
+	var question_object = new Object();
 	firstDigit = generateNumber();
 	op = generateNumber() % 4;
 	secondDigit = generateNumber();
 	var new_question = firstDigit + ' ' + operator[op] + ' ' + secondDigit;
-	questions.push(new_question);
 	answer = eval(new_question);
-	answers.push(answer);
+
+	question_object.question = new_question;
+	question_object.answer = answer;
+	question_list.push(question_object);
 }
 
 function generateQuestion(){
@@ -27,7 +29,8 @@ function generateQuestion(){
 	quesNumber = document.getElementById("ques_no");
 	quesNumber.innerHTML = "Ques No." + ques_count + "->";
 	questionField = document.getElementById("question");
-	questionField.innerHTML = questions[ques_count];
+	questionField.innerHTML = question_list[ques_count].question;
+	
 }
 
 // Generates a random number
@@ -37,16 +40,14 @@ function generateNumber(){
 function newQuestion(){
 	answerField = document.getElementById("answer");
 	answerField.removeAttribute('disabled');
-	time = 10;
+	time = 5;
 	clearTimeout(t);
 	t = setInterval(timer, 1000);
-	
-	if(answerField.value == answers[ques_count]){
+	if(answerField.value == question_list[ques_count].answer){
 		score++;
-		console.log(score);
 	}
 	else {
-		wrong = questions[ques_count]+ " = " +answers[ques_count];
+		wrong = question_list[ques_count].question + " = " + question_list[ques_count].answer;
 		wrongAnswers.push(wrong);
 	}
 	if(ques_count < maxQuestion)
@@ -66,8 +67,9 @@ function timer() {
 		answer_field.setAttribute('disabled', "disabled");
 	}
 }
+
+//Displays the output
 function displayResult(){
-	console.log(timeout);
 	document.getElementById('replaceDiv').style.display = 'none';
 	var output = document.getElementById('output').style.display ='block';
 	
@@ -75,7 +77,7 @@ function displayResult(){
 	scoreField.innerHTML = "Score: <br/>" + score + " out of " + maxQuestion + "<br/>";
 
 	var result_div = document.getElementById("result");
-	for(var j = 0; j < wrongAnswers.length; j++){
+	for(var j = 1; j < wrongAnswers.length; j++){
 		new_line = document.createElement("br");
 		correct_answer = document.createTextNode(wrongAnswers[j]);
 		result_div.appendChild(correct_answer);
