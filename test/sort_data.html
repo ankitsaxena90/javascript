@@ -1,0 +1,26 @@
+<!Doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="libs/jquery-1.5.1.js" type="text/javascript"></script>
+		<script src="sort_data.js" type="text/javascript"></script>
+	</head>
+	<body onload="document.data_form.reset()">
+		<form id="data_form" name="data_form">
+			Enter Name: <input id="name" name="name" /> <br/>
+			Enter Email :<input id="email" name="email" /><br/>
+			<input type="submit" id="submit" value="Submit" />
+		</form>
+		<div id="table_div">
+			<table id="data" border="1">
+				<thead>
+					<td class="sort" "asc">ID</td>
+					<td class="sort" >Name</td>
+					<td class="sort" >Email</td>
+				</thead>
+				<tbody id="tbody">
+				</tbody>
+			</table>
+		</div>
+	</body>
+</hmtl>

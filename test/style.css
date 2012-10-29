@@ -1,0 +1,11 @@
+#table_div{
+	margin-top: 20px;
+}
+thead{
+	text-decoration: underline;
+	cursor: pointer;
+	font-weight: bold;
+}
+td{
+	width: 150px;
+}
