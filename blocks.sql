@@ -33,6 +33,7 @@ mysql> select shape,color,
 
 
 
+
 (ii)
 mysql> select shape,color,
     -> case shape
@@ -52,6 +53,8 @@ mysql> select shape,color,
 | triangle  | red   | 16.4540000 |
 +-----------+-------+------------+
 4 rows in set (0.00 sec)
+
+
 
 
 
@@ -88,3 +91,30 @@ mysql> select bq.block_id,shape,color,
 |     NULL | circle    | white  |         NULL |
 +----------+-----------+--------+--------------+
 16 rows in set (0.00 sec)
+
+
+
+
+(iv)
+mysql> select t1.color, sum(t1.area) as area from (select bq.block_id,shape,color,
+    -> case shape
+    -> when 'triangle' then bq.qty*(1.732/4*side1*side1)
+    -> when 'circle' then bq.qty*(22/7*side1*side1)
+    -> when 'square' then bq.qty*(side1*side1)
+    -> else bq.qty*(side1*side2)
+    -> end as area
+    -> from blocks b
+    -> left join block_qty bq
+    -> on bq.block_id = b.id
+    -> group by b.id) as t1
+    -> group by t1.color having area > 300;
++--------+--------------+
+| color  | area         |
++--------+--------------+
+| cyan   |  432.0000000 |
+| green  | 2522.2857136 |
+| red    |  381.9178571 |
+| yellow |  343.8560000 |
++--------+--------------+
+4 rows in set (0.01 sec)
+
